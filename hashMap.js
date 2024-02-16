@@ -108,14 +108,14 @@ export class HashMap {
     }
 
     clear = () => {
-        for (let i = 0; i < BUCKETS; i++) {
+        for (let i = 0; i < this.buckets.length; i++) {
             this.buckets[i] = [];
         }
     }
 
     keys = () => {
         let keyArr = [];
-        for (let i = 0; i < BUCKETS; i++) {
+        for (let i = 0; i < this.buckets.length; i++) {
             const bucket = this.buckets[i];
             bucket.forEach(([key, value]) => {
                 keyArr.push(key);
@@ -127,7 +127,7 @@ export class HashMap {
 
     values = () => {
         let valuesArr = [];
-        for (let i = 0; i < BUCKETS; i++) {
+        for (let i = 0; i < this.buckets.length; i++) {
             const bucket = this.buckets[i];
             bucket.forEach(([key, value]) => {
                 valuesArr.push(value);
@@ -139,7 +139,7 @@ export class HashMap {
 
     entries = () => {
         let kvArr = [];
-        for (let i = 0; i < BUCKETS; i++) {
+        for (let i = 0; i < this.buckets.length; i++) {
             const bucket = this.buckets[i];
             bucket.forEach(([key, value]) => {
                 kvArr.push([key, value]);

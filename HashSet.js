@@ -85,14 +85,14 @@ export class HashSet {
     }
 
     clear = () => {
-        for (let i = 0; i < BUCKETS; i++) {
+        for (let i = 0; i < this.buckets.length; i++) {
             this.buckets[i] = [];
         }
     }
 
     keys = () => {
         let keyArr = [];
-        for (let i = 0; i < BUCKETS; i++) {
+        for (let i = 0; i < this.buckets.length; i++) {
             const bucket = this.buckets[i];
             bucket.forEach((key) => {
                 keyArr.push(key);
