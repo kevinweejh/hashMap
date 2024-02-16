@@ -17,6 +17,20 @@ export class HashMap {
         return hashCode;
     }
 
+    resize = () => {
+        const newCap = this.buckets.length * 2;
+        const newBuckets = Array.from({ length: newCap }, () => []);
+
+        const oldBuckets = this.buckets; // For reference when transfering old -> new
+        this.buckets = newBuckets; // Restructure hash map with new buckets
+
+        oldBuckets.forEach((oldBucket) => {
+            oldBucket.forEach(([key, value]) => {
+                this.set(key, value); // Rehash and set all kv pairs from oldBuckets
+            })
+        })
+    }
+
     set = (key, value) => {
         const bucketIndex = this.hash(key);
         const bucket = this.buckets[bucketIndex];
