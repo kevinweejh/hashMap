@@ -91,4 +91,16 @@ export class HashMap {
             this.buckets[i] = [];
         }
     }
+
+    keys = () => {
+        let keyArr = [];
+        for (let i = 0; i < BUCKETS; i++) {
+            const bucket = this.buckets[i];
+            bucket.forEach(([key, value]) => {
+                keyArr.push(key);
+            })
+        }
+
+        return keyArr;
+    }
 }
