@@ -1,8 +1,8 @@
-const BUCKETS = 16;
-
 export class HashMap {
-    constructor() {
-        this.buckets = Array.from({ length: BUCKETS }, () => []);
+    constructor(initialCap = 16, loadFactor = 0.75) {
+        this.buckets = Array.from({ length: initialCap }, () => []);
+        this.loadFactor = loadFactor;
+        this.count = 0;
     }
 
     hash = (key) => {
@@ -11,7 +11,7 @@ export class HashMap {
         
         // Controlled hash function to ensure calculated indices always within bounds
         for (let i = 0; i < key.length; i++) {
-            hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % BUCKETS;
+            hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % this.buckets.length;
         }
 
         return hashCode;
