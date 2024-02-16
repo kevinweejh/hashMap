@@ -103,4 +103,16 @@ export class HashMap {
 
         return keyArr;
     }
+
+    values = () => {
+        let valuesArr = [];
+        for (let i = 0; i < BUCKETS; i++) {
+            const bucket = this.buckets[i];
+            bucket.forEach(([key, value]) => {
+                valuesArr.push(value);
+            })
+        }
+
+        return valuesArr;
+    }
 }
