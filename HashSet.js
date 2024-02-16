@@ -54,20 +54,6 @@ export class HashSet {
         this.count++;
     }
 
-    get = (key) => {
-        const bucketIndex = this.hash(key);
-        const bucket = this.buckets[bucketIndex];
-
-        for (let i = 0; i < bucket.length; i++) {
-            const [currentKey, currentValue] = bucket[i];
-            if (currentKey === key) {
-                return currentValue;
-            }
-        }
-
-        return null; // Return null if key not found
-    }
-
     has = (key) => {
         const bucketIndex = this.hash(key);
         const bucket = this.buckets[bucketIndex];
@@ -123,29 +109,5 @@ export class HashSet {
         }
 
         return keyArr;
-    }
-
-    values = () => {
-        let valuesArr = [];
-        for (let i = 0; i < BUCKETS; i++) {
-            const bucket = this.buckets[i];
-            bucket.forEach(([key, value]) => {
-                valuesArr.push(value);
-            })
-        }
-
-        return valuesArr;
-    }
-
-    entries = () => {
-        let kvArr = [];
-        for (let i = 0; i < BUCKETS; i++) {
-            const bucket = this.buckets[i];
-            bucket.forEach(([key, value]) => {
-                kvArr.push([key, value]);
-            })
-        }
-
-        return kvArr;
     }
 }
