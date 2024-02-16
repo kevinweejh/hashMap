@@ -115,4 +115,16 @@ export class HashMap {
 
         return valuesArr;
     }
+
+    entries = () => {
+        let kvArr = [];
+        for (let i = 0; i < BUCKETS; i++) {
+            const bucket = this.buckets[i];
+            bucket.forEach(([key, value]) => {
+                kvArr.push([key, value]);
+            })
+        }
+
+        return kvArr;
+    }
 }
