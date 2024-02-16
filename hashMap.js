@@ -31,4 +31,18 @@ export class HashMap {
 
         bucket.push([key, value]);
     }
+
+    get = (key) => {
+        const bucketIndex = this.hash(key);
+        const bucket = this.buckets[bucketIndex];
+
+        for (let i = 0; i < bucket.length; i++) {
+            const [currentKey, currentValue] = bucket[i];
+            if (currentKey === key) {
+                return currentValue;
+            }
+        }
+
+        return null; // Return null if key not found
+    }
 }
