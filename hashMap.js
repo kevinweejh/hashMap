@@ -32,6 +32,12 @@ export class HashMap {
     }
 
     set = (key, value) => {
+        // Resize hash map if hash map loading exceeds threshold
+        const loading = this.count / this.buckets.length;
+        if (loading >= this.loadFactor) {
+            this.resize();
+        }
+        
         const bucketIndex = this.hash(key);
         const bucket = this.buckets[bucketIndex];
 
@@ -45,6 +51,7 @@ export class HashMap {
         }
 
         bucket.push([key, value]);
+        this.count++;
     }
 
     get = (key) => {
