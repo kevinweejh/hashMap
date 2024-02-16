@@ -9,11 +9,12 @@ export class HashMap {
         let hashCode = 0;
         const primeNumber = 31;
         
+        // Controlled hash function to ensure calculated indices always within bounds
         for (let i = 0; i < key.length; i++) {
-            hashCode = primeNumber * hashCode + key.charCodeAt(i);
+            hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % BUCKETS;
         }
 
-        return hashCode % BUCKETS;
+        return hashCode;
     }
 
     set = (key, value) => {
