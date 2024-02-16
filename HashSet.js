@@ -22,17 +22,17 @@ export class HashSet {
         const newBuckets = Array.from({ length: newCap }, () => []);
 
         const oldBuckets = this.buckets; // For reference when transfering old -> new
-        this.buckets = newBuckets; // Restructure hash map with new buckets
+        this.buckets = newBuckets; // Restructure hash set with new buckets
 
         oldBuckets.forEach((oldBucket) => {
-            oldBucket.forEach(([key, value]) => {
-                this.set(key, value); // Rehash and set all kv pairs from oldBuckets
+            oldBucket.forEach((key) => {
+                this.set(key); // Rehash and set all keys from oldBuckets
             })
         })
     }
 
-    set = (key, value) => {
-        // Resize hash map if hash map loading exceeds threshold
+    set = (key) => {
+        // Resize hash set if hash set loading exceeds threshold
         const loading = this.count / this.buckets.length;
         if (loading >= this.loadFactor) {
             this.resize();
@@ -41,16 +41,7 @@ export class HashSet {
         const bucketIndex = this.hash(key);
         const bucket = this.buckets[bucketIndex];
 
-        // Update value if key exists in bucket
-        for (let i = 0; i < bucket.length; i++) {
-            const [currentKey] = bucket[i]; // Array destructuring to get key
-            if (currentKey === key) {
-                bucket[i][1] = value; 
-                return;
-            }
-        }
-
-        bucket.push([key, value]);
+        bucket.push(key);
         this.count++;
     }
 
@@ -103,7 +94,7 @@ export class HashSet {
         let keyArr = [];
         for (let i = 0; i < BUCKETS; i++) {
             const bucket = this.buckets[i];
-            bucket.forEach(([key, value]) => {
+            bucket.forEach((key) => {
                 keyArr.push(key);
             })
         }
