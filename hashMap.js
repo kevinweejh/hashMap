@@ -60,4 +60,19 @@ export class HashMap {
 
         return false; // Return false if key not found
     }
+
+    remove = (key) => {
+        const bucketIndex = this.hash(key);
+        const bucket = this.buckets[bucketIndex];
+
+        for (let i = 0; i < bucket.length; i++) {
+            const [currentKey] = bucket[i];
+            if (currentKey === key) {
+                bucket.splice(i, 1); // Remove array item if key matches
+                return true;
+            }
+        }
+
+        return false; // Return false if key not found
+    }
 }
