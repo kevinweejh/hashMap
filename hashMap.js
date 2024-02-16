@@ -15,4 +15,20 @@ export class HashMap {
 
         return hashCode % BUCKETS;
     }
+
+    set = (key, value) => {
+        const bucketIndex = this.hash(key);
+        const bucket = this.buckets[bucketIndex];
+
+        // Update value if key exists in bucket
+        for (let i = 0; i < bucket.length; i++) {
+            const [currentKey] = bucket[i]; // Array destructuring to get key
+            if (currentKey === key) {
+                bucket[i][1] = value; 
+                return;
+            }
+        }
+
+        bucket.push([key, value]);
+    }
 }
