@@ -46,4 +46,18 @@ export class HashMap {
 
         return null; // Return null if key not found
     }
+
+    has = (key) => {
+        const bucketIndex = this.hash(key);
+        const bucket = this.buckets[bucketIndex];
+
+        for (let i = 0; i < bucket.length; i++) {
+            const [currentKey] = bucket[i];
+            if (currentKey === key) {
+                return true;
+            }
+        }
+
+        return false; // Return false if key not found
+    }
 }
