@@ -75,4 +75,14 @@ export class HashMap {
 
         return false; // Return false if key not found
     }
+
+    length = () => {
+        let keyCount = 0;
+        
+        this.buckets.forEach((bucket) => {
+            keyCount += bucket.length;
+        })
+        
+        return keyCount; 
+    }
 }
