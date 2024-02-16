@@ -85,4 +85,10 @@ export class HashMap {
         
         return keyCount; 
     }
+
+    clear = () => {
+        for (let i = 0; i < BUCKETS; i++) {
+            this.buckets[i] = [];
+        }
+    }
 }
